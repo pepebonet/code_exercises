@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-
+import numpy as np
 
 
 def reverseWords(s):
@@ -64,16 +64,53 @@ def quickSort(arr, low, high):
 
         quickSort(arr, low, pi-1)
         quickSort(arr, pi+1, high)
- 
+
+
+def multiplication_table(number):
+    return [number*i for i in range(11)]
+
+
+def pallindrome_sum(num):
+    total = 0
+    for el in str(num): 
+        total += int(el)
+
+    if str(total) == str(total)[::-1]:
+        return 1
+    else:
+        return 0
+
+
+def reverse_digits(num):
+    return int(str(num)[::-1])
+
+
+def closest_number(N, M):
+    import pdb;pdb.set_trace()
+    if (N / M - np.floor(N / M)) > (np.ceil(N / M) - N / M):
+        return int(np.ceil(N / M) * M)
+
+    elif (N / M - np.floor(N / M)) < (np.ceil(N / M) - N / M):
+        return int(np.floor(N/M) * M)
+    else:
+        if (N < 0 and M > 0) or (N > 0 and M < 0): 
+            return int(np.floor(N/M) * M)
+        else:
+            return int(np.ceil(N / M) * M)
 
 
 if __name__ == '__main__':
-    print(reverseWords("Hello, John"))
+    # print(reverseWords("Hello, John"))
 
-    print(printthepattern(3))
+    # print(printthepattern(3))
 
-    arr = [10, 7, 5, 3, 2, 4]
-    n = len(arr)
-    print(quickSort(arr, 0, n-1))
+    # arr = [10, 7, 5, 3, 2, 4]
+    # quickSort(arr, 0, len(arr)-1)
+    # print(arr)
 
-    
+    # print(multiplication_table(9))
+    # print(pallindrome_sum(75))
+    # print(reverse_digits(122))
+
+    print(closest_number(15, -6))
+
