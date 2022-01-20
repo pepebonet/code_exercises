@@ -105,7 +105,6 @@ def factorial(N):
     return result
 
 
-
 def largestPrimeFactor(N):
 
     def test_candidates(cand):
@@ -130,6 +129,88 @@ def largestPrimeFactor(N):
     return test_candidates(cands)
 
 
+def maxStock(A, n):
+    
+    keep = []; maxis = 0
+    for i in range(n):
+        for k in range(i + 1, n):
+            profit = A[k] - A[i]
+
+            if profit > 0: 
+                if profit == maxis: 
+                    keep.append((i, k))
+                    maxis = profit
+
+                elif profit > maxis:
+
+                    if len(keep) >= 1:
+                        for kept in keep:
+                            if i <= kept[1]:
+                                maxis = profit
+                                keep = [(i,k)]
+                            else:
+                                maxis = profit + maxis
+                                keep.append((i,k))
+                            import pdb; pdb.set_trace()
+                    else: 
+                        maxis = profit
+                        keep = [(i,k)]
+                    # maxis = profit 
+                    
+
+                # import pdb;pdb.set_trace()
+    import pdb; pdb.set_trace()
+
+
+def maxStock2(A, n):
+    
+    profit = 0; attention = []
+    
+    for i in range(n):
+        for k in range(i + 1, n):
+            profit = A[k] - A[i]
+
+            if profit < 0: 
+
+                if k not in attention:
+                    attention.append(k)
+                    # if len(attention) == 0:
+                    #     attention.append(k)
+                    # else:
+                    #     if k < min(attention):
+                    #         attention.append(k)
+                    #     else:
+                    #         import pdb;pdb.set_trace()
+                    
+    attention.append(n)
+    attention = [0] + attention
+    keep = []; keep_all = []; all_profit = 0; maxis = 0
+    import pdb;pdb.set_trace()
+    for l in range(1, len(attention)):
+        profit = 0
+
+        for i in range(attention[l-1], attention[l], 1):
+            for k in range(i + 1, attention[l]):
+
+                profit = A[k] - A[i]
+                if profit > 0:
+                    if profit == maxis: 
+                        keep.append((i, k))
+                        maxis = profit
+
+                    elif profit > maxis:
+                        maxis = profit 
+                        keep = [(i,k)]
+                    
+
+        all_profit += maxis
+
+        for el in keep:
+            keep_all.append(el)
+    
+    return list(set(keep_all))
+                
+
 
 if __name__ == '__main__':
     # print(reverseWords("Hello, John"))
@@ -146,5 +227,6 @@ if __name__ == '__main__':
 
     # print(closest_number(15, -6))
     # print(factorial(4))
-    print(largestPrimeFactor(97))
+    # print(largestPrimeFactor(97))
+    print(maxStock2([11,42,49,96,23,20,49,26,26,18,73,2,53,59,34,99,25,2], 18))
 
