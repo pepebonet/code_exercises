@@ -86,7 +86,6 @@ def reverse_digits(num):
 
 
 def closest_number(N, M):
-    import pdb;pdb.set_trace()
     if (N / M - np.floor(N / M)) > (np.ceil(N / M) - N / M):
         return int(np.ceil(N / M) * M)
 
@@ -97,6 +96,39 @@ def closest_number(N, M):
             return int(np.floor(N/M) * M)
         else:
             return int(np.ceil(N / M) * M)
+
+
+def factorial(N):
+    result = 1
+    for el in range(1, N + 1):
+        result *= el
+    return result
+
+
+
+def largestPrimeFactor(N):
+
+    def test_candidates(cand):
+        primes = [1]
+        for el in cand:
+            for k in range(int(el/2), 0, -1):
+
+                if k == 1:
+                    primes.append(el)
+                else:
+                    if el % k == 0:
+                        break
+
+        return max(primes)
+
+    cands = [N]
+    for i in range(2, int(N/2) + 1): 
+        if N % i == 0:
+            cands.append(i)
+            
+    
+    return test_candidates(cands)
+
 
 
 if __name__ == '__main__':
@@ -112,5 +144,7 @@ if __name__ == '__main__':
     # print(pallindrome_sum(75))
     # print(reverse_digits(122))
 
-    print(closest_number(15, -6))
+    # print(closest_number(15, -6))
+    # print(factorial(4))
+    print(largestPrimeFactor(97))
 
