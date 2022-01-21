@@ -209,6 +209,23 @@ def maxStock2(A, n):
             keep_all.append(el)
     
     return list(set(keep_all))
+
+
+def perfectNumber(N):
+
+    total = 1
+    for i in range(2, int(np.sqrt(N)) + 1):
+        if N % i == 0:
+            if i == N/i:
+                total += i
+            else:
+                total += i
+                total += N/i
+
+    if total == N and N != 1:
+        return 1
+    else:
+        return 0
                 
 
 
@@ -228,5 +245,7 @@ if __name__ == '__main__':
     # print(closest_number(15, -6))
     # print(factorial(4))
     # print(largestPrimeFactor(97))
-    print(maxStock2([11,42,49,96,23,20,49,26,26,18,73,2,53,59,34,99,25,2], 18))
+    # print(maxStock2([11,42,49,96,23,20,49,26,26,18,73,2,53,59,34,99,25,2], 18))
+
+    print(perfectNumber(1))
 
