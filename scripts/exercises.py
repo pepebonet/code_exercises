@@ -226,7 +226,21 @@ def perfectNumber(N):
         return 1
     else:
         return 0
+
+    
+def fibonacci_N(N):
+    fib_series = [0]
+    for i in range(N):
+        if len(fib_series) == 1:
+            fib_series.append(1)
+        else:
+            fib_series.append(fib_series[i] + fib_series[i - 1])
+
+    return int(str(fib_series[-1])[-1])
+    
                 
+def max_path_leaf_nodes(root):
+    import pdb;pdb.set_trace()
 
 
 if __name__ == '__main__':
@@ -247,5 +261,8 @@ if __name__ == '__main__':
     # print(largestPrimeFactor(97))
     # print(maxStock2([11,42,49,96,23,20,49,26,26,18,73,2,53,59,34,99,25,2], 18))
 
-    print(perfectNumber(1))
+    # print(perfectNumber(1))
+
+    print(fibonacci_N(0))
+    print(max_path_leaf_nodes([3, 4, 5, -10, 4]))
 
