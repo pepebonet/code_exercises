@@ -227,7 +227,7 @@ def perfectNumber(N):
     else:
         return 0
 
-    
+
 def fibonacci_N(N):
     fib_series = [0]
     for i in range(N):
@@ -236,11 +236,67 @@ def fibonacci_N(N):
         else:
             fib_series.append(fib_series[i] + fib_series[i - 1])
 
-    return int(str(fib_series[-1])[-1])
-    
+    return int(str(fib_series[-1])[-1:])
+
+
+def fibonacci_2N(N):
+    fib_series = [0, 1]
+    for _ in range(1, N):
+        new_num = fib_series[1] + fib_series[0]
+        fib_series[0] = fib_series[1]
+        fib_series[1] = new_num
+
+    return int(str(fib_series[-1])[-2:])
+
+
+def fibonacci_3N(N):
+    import math
+    def fibo(n):
+        phi = (1 + math.sqrt(5)) / 2
+        return round(pow(phi, n) / math.sqrt(5))
+
+    return int(str(fibo(N))[-2:])
+
+
                 
 def max_path_leaf_nodes(root):
     import pdb;pdb.set_trace()
+
+
+def triangular_number(N):
+
+    summ = 0
+    for i in range(N):
+        print(i)
+        if summ < N:
+            summ += i
+        elif summ == N: 
+            return 1
+        else:
+            return 0
+
+
+def triangular_number_2(N):
+    import math
+
+    x = (int)(math.sqrt(2*N))
+    if x*(x+1) == 2*N:
+        return 1
+    return 0   
+
+
+def number_of_triangles(arr, n):
+    triangles = 0
+
+    for i in range(n):
+        for k in range(i + 1, n):
+            
+            # triangles += len([l for l in arr[k+1:] if (l < arr[i] + arr[k]) and (l + min(arr[i], arr[k]) > max(arr[i], arr[k]))])
+            for l in arr[k+1:]:
+                if (l < arr[i] + arr[k]) and (l + min(arr[i], arr[k]) > max(arr[i], arr[k])):
+                    triangles += 1
+    import pdb;pdb.set_trace()
+    return triangles
 
 
 if __name__ == '__main__':
@@ -263,6 +319,11 @@ if __name__ == '__main__':
 
     # print(perfectNumber(1))
 
-    print(fibonacci_N(0))
-    print(max_path_leaf_nodes([3, 4, 5, -10, 4]))
+    # print(fibonacci_N(0))
+    # print(max_path_leaf_nodes([3, 4, 5, -10, 4]))
 
+    # print(triangular_number_2(55))
+
+    # print(fibonacci_3N(1355))
+
+    number_of_triangles([26, 9, 27, 22, 16, 27], 5)
