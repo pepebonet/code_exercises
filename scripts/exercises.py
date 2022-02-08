@@ -298,6 +298,34 @@ def number_of_triangles(arr, n):
     import pdb;pdb.set_trace()
     return triangles
 
+def NthRoot(n, m):
+    # Code here
+    val = round(m ** (1 / n), 10)
+    import pdb;pdb.set_trace()
+    if val.is_integer():
+        return int(val)
+        
+    else: 
+        return -1
+
+
+def minDist(arr, n, x, y):
+    if (x in arr) and (y in arr):
+        aa = np.asarray(arr)
+        x_ins = np.argwhere(aa == x).flatten()
+        y_ins = np.argwhere(aa == y).flatten()
+        import pdb;pdb.set_trace()
+        mins = float('inf')
+        for xi in x_ins:
+            for yi in y_ins: 
+                if np.abs(xi - yi) < mins:
+                    mins = np.abs(xi - yi)
+        import pdb;pdb.set_trace()
+        
+        return mins
+    else:
+        return -1
+
 
 if __name__ == '__main__':
     # print(reverseWords("Hello, John"))
@@ -326,4 +354,9 @@ if __name__ == '__main__':
 
     # print(fibonacci_3N(1355))
 
-    number_of_triangles([26, 9, 27, 22, 16, 27], 5)
+    # number_of_triangles([26, 9, 27, 22, 16, 27], 5)
+
+
+    # print(NthRoot(6, 4096))
+
+    minDist([1,2,3,2], 4, 1, 2)
